@@ -7,6 +7,12 @@ TagManager:
   - Interactable
   - PickUp
   - Liquid
+  - Continous
+  - GameManager
+  - Bottle
+  - Watch
+  - Hand
+  - WatchTarget
   layers:
   - Default
   - TransparentFX
@@ -17,8 +23,8 @@ TagManager:
   - 
   - 
   - Particle Keeper
-  - 
-  - 
+  - Paint
+  - HideLight
   - 
   - 
   - 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5157395080114985355}
   - component: {fileID: 5157395080114985353}
   - component: {fileID: 5157395080114985352}
+  - component: {fileID: 1842396724618214841}
   m_Layer: 0
   m_Name: LiquidParticles
   m_TagString: Liquid
@@ -222,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.17196728, g: 0.5471698, b: 0, a: 0.5176471}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.5176471}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -3735,7 +3736,7 @@ ParticleSystem:
     m_EnergyLossOnCollision:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.7
+      scalar: 0.83
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3794,12 +3795,12 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
-    collisionShape0: {fileID: 0}
+    enabled: 1
+    collisionShape0: {fileID: 5157395080114985355}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
     collisionShape3: {fileID: 0}
@@ -3807,9 +3808,9 @@ ParticleSystem:
     collisionShape5: {fileID: 0}
     inside: 1
     outside: 0
-    enter: 0
-    exit: 0
-    radiusScale: 1
+    enter: 1
+    exit: 1
+    radiusScale: 0.05
   SubModule:
     serializedVersion: 2
     enabled: 0
@@ -4811,3 +4812,21 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1842396724618214841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157395080114985354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c585bdce87298e4aa71f4ff782f60ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curAlcohol: 0
+  curAlcoholOunces: 0
+  curBottle: 0
+  liquidSize: {fileID: 0}
+  parent: {fileID: 0}
+  counter: 0

@@ -40,12 +40,12 @@ namespace UnitySimpleLiquid
 
         [Header("Container Volume")]
         [SerializeField]
-		private bool customVolume;
+        private bool customVolume;
         private float volume = 1f;
 
         #region Liquid Amount
         // After this values shader might become unstable
-        private const float minFillAmount = 0.1f;
+        private const float minFillAmount = 0.1f; //0.1
         private const float maxFillAmount = 0.99f;
 
         public bool IsOpen
@@ -134,15 +134,11 @@ namespace UnitySimpleLiquid
             }
         }
 
-        /// <summary>
         /// Calculate container volume based on mesh bounds and transform size 
-        /// </summary>
-        /// <returns>Container volume in liters</returns>
         public float CalculateVolume()
         {
             var mesh = LiquidMesh;
-            if (!mesh)
-                return 0f;
+            if (!mesh) return 0f;
 
             var boundsSize = LiquidMesh.bounds.size;
             var scale = transform.lossyScale;
@@ -153,9 +149,7 @@ namespace UnitySimpleLiquid
 
         #region Liquid Surface
         private Vector3 surfaceLevel;
-        /// <summary>
         ///  Surface level of liquid in world-space coordinates
-        /// </summary>
         public Vector3 SurfaceLevel
         {
             get
@@ -165,8 +159,7 @@ namespace UnitySimpleLiquid
             set
             {
                 surfaceLevel = value;
-                if (MaterialInstance)
-                    MaterialInstance.SetVector(SurfaceLevelID, value);
+                if (MaterialInstance) MaterialInstance.SetVector(SurfaceLevelID, value);
             }
         }
 
@@ -177,8 +170,7 @@ namespace UnitySimpleLiquid
                 SurfaceLevel = CalculateWoldSurfaceLevel();
                 liquidRender.enabled = true;
             }
-            else
-                liquidRender.enabled = false;
+            else liquidRender.enabled = false;
         }
 
         private Vector3 CalculateWoldSurfaceLevel()
@@ -347,30 +339,25 @@ namespace UnitySimpleLiquid
 
         private void Update()
         {
-            if (liquidRender == null)
-                return;
+            if (liquidRender == null) return;
 
             // Update surface volume
             UpdateSurfacePos();
 
             // In case transform scale is changed - update volume
-            if (!customVolume)
-                volume = CalculateVolume();
+            if (!customVolume) volume = CalculateVolume();
 
-            if (Application.isPlaying)
-                UpdateWoble();
+            if (Application.isPlaying) UpdateWoble();
         }
 
         private void OnValidate()
         {
-            if (liquidRender == null)
-                return;
+            if (liquidRender == null) return;
 
             LiquidColor = liquidColor;
             FillAmountPercent = fillAmountPercent;
             IsOpen = isOpen;
         } 
-
     }
 }
 

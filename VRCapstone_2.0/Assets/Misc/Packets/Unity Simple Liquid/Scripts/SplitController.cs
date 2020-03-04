@@ -60,37 +60,32 @@ namespace UnitySimpleLiquid
         public Plane surfacePlane { get; private set; }
         public Vector3 BottleneckPos { get; private set; }
 
-        
+
         private Plane GenerateBottleneckPlane()
         {
-            if (!liquidContainer)
-                return new Plane();
+            if (!liquidContainer) return new Plane();
 
             var mesh = liquidContainer.LiquidMesh;
-            if (!mesh)
-                return new Plane();
+            if (!mesh) return new Plane();
 
             var max = mesh.bounds.max.y;
             return new Plane(liquidContainer.transform.up,
-                max * liquidContainer.transform.lossyScale.y);
+            max * liquidContainer.transform.lossyScale.y);
         }
 
         private Vector3 GenerateBottleneckPos()
         {
-            if (!liquidContainer)
-                return Vector3.zero;
+            if (!liquidContainer) return Vector3.zero;
 
             var tr = liquidContainer.transform;
             var pos = bottleneckPlane.normal * bottleneckPlane.distance + tr.position;
-            //var pos = endPosition.transform.position + tr.position;
             return pos;
             
         }
 
 		private Vector3 GenerateBottleneckLowesPoint()
 		{
-			if (!liquidContainer)
-				return Vector3.zero;
+			if (!liquidContainer) return Vector3.zero;
 
 			// Calculate the direction vector of the bottlenecks slope
 
@@ -98,9 +93,7 @@ namespace UnitySimpleLiquid
 
 			// Find a position along the slope the side of the bottleneck radius
 			Vector3 min = BottleneckPos + bottleneckSlope * BottleneckRadiusWorld;
-
 			return min;
-
 		}
 		#endregion
 
@@ -149,8 +142,7 @@ namespace UnitySimpleLiquid
 
             // Check if liquid is overflows
             Vector3 overflowsPoint, lineVec;
-            var overflows = GeomUtils.PlanePlaneIntersection(out overflowsPoint, out lineVec,
-                bottleneckPlane, surfacePlane);
+            var overflows = GeomUtils.PlanePlaneIntersection(out overflowsPoint, out lineVec, bottleneckPlane, surfacePlane);
 
             // Translate to contrainers world position
             overflowsPoint += liquidContainer.transform.position;

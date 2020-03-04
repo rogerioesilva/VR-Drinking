@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Misc/Models/ambience/3D Free Modular Kit/Test_Map 1.unity
+- path: Assets/Scenes/Bar.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
