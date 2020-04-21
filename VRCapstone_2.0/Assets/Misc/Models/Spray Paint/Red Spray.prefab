@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5460795583278443092}
   - component: {fileID: 5460795583278443093}
   - component: {fileID: 5460795583278443094}
+  - component: {fileID: 4660979768383676181}
+  - component: {fileID: 2697541316242355633}
   m_Layer: 0
   m_Name: Red Spray
   m_TagString: Continous
@@ -198,7 +200,8 @@ MonoBehaviour:
   onPickUp:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8705518857141014264}
+      - m_Target: {fileID: 6060160313951725618, guid: a1ac3421e3155e7489a56d3521e67a1d,
+          type: 3}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -212,7 +215,8 @@ MonoBehaviour:
   onDetachFromHand:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8705518857141014264}
+      - m_Target: {fileID: 6060160313951725618, guid: a1ac3421e3155e7489a56d3521e67a1d,
+          type: 3}
         m_MethodName: Stop
         m_Mode: 1
         m_Arguments:
@@ -240,6 +244,126 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.049999993, y: 0.09784655, z: 0.04963544}
   m_Center: {x: 0, y: 0.048923276, z: 0}
+--- !u!167 &4660979768383676181
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5460795583278443095}
+  m_Enabled: 1
+  m_MinDistance: 3
+  m_MaxDistance: 3
+  m_ReverbPreset: 5
+  m_Room: -1000
+  m_RoomHF: -6000
+  m_DecayTime: 0.5
+  m_DecayHFRatio: 0.1
+  m_Reflections: -1376
+  m_ReflectionsDelay: 0.003
+  m_Reverb: -1104
+  m_ReverbDelay: 0.004
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
+--- !u!82 &2697541316242355633
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5460795583278443095}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5460795583278462549
 GameObject:
   m_ObjectHideFlags: 0
@@ -5085,5 +5209,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339863860f6726442bdfc1e4e8a2c345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballColor: {fileID: 2100000, guid: 251e391b08167a142946b8e20dfc715e, type: 2}
-  sprayColor: {r: 0.8773585, g: 0.12829298, b: 0.12829298, a: 0}
+  sprayColor: {fileID: 0}

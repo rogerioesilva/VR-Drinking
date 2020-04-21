@@ -35,7 +35,7 @@ public class PickUp : MonoBehaviour
         
         if (other.gameObject.tag == "PickUp" || other.gameObject.tag == "Interactable" || other.gameObject.tag == "Continous")
         {
-            aus.PlayOneShot(myClip);
+         //   aus.PlayOneShot(myClip);
             if (leftHand) Haptic(.1f, 10, 75, SteamVR_Input_Sources.LeftHand);
             else Haptic(.1f, 10, 75, SteamVR_Input_Sources.RightHand);
 

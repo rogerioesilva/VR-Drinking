@@ -4824,9 +4824,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c585bdce87298e4aa71f4ff782f60ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  counter: 0
   curAlcohol: 0
   curAlcoholOunces: 0
   curBottle: 0
-  liquidSize: {fileID: 0}
-  parent: {fileID: 0}
-  counter: 0
+  drinkSound: {fileID: 8300000, guid: 7f75efe2c11f97f4bb96b35c14bba594, type: 3}
+  pourSound: {fileID: 8300000, guid: da766a281b88e5f459b7d35ecafbb165, type: 3}
+  inside: 0

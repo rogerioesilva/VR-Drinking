@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class Watch : MonoBehaviour
 {
-    public Material normMaterial, hoverMaterial;
+    [Header("Renderer")]
     public bool hover;
+    public Material normMaterial, hoverMaterial;
+
+    [Header("Stats")]
     public GameObject stats;
+    public Animator anim;
+
+    [Header("Audio")]
+    public AudioSource aus;
+    public AudioClip mySound;
+    private bool played;
 
     public void Update()
     {
@@ -14,10 +23,24 @@ public class Watch : MonoBehaviour
         {
             this.gameObject.GetComponent<MeshRenderer>().material = hoverMaterial;
             stats.SetActive(true);
+            
+            //MISC
+            if (!played)
+            {
+                aus.PlayOneShot(mySound);
+                played = true;
+                anim.SetBool("Open", true);
+            }
         }
         else
         {
-            stats.SetActive(false);
+            anim.SetBool("Open", false);
+            if (played)
+            {
+                aus.PlayOneShot(mySound);
+                played = false;
+            }
+          //  stats.SetActive(false);
             this.gameObject.GetComponent<MeshRenderer>().material = normMaterial;
         }
     }

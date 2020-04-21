@@ -14,11 +14,13 @@ public class Alcohol_Stats : MonoBehaviour
     [Header("Alcohol Stats")]
     public string title;
     public GameObject bottleObj, liquidObj, cupObj;
-    public Text sizeUI, alcoholOunces, alcoholML;
+    public Text sizeUI;
+    [HideInInspector] public Text ouncesText, mLText;
     public bool grabbed, hover, isCenter;
     public Stats[] stats;
     private UnitySimpleLiquid.LiquidContainer liquidSize;
     public float curOunces, bottleSize = 0.354882f;
+    public AudioSource aus;
 
     public void Start()
     {

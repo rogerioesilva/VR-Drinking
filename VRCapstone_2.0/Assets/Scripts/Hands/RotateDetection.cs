@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class RotateDetection : MonoBehaviour
 {
-    public Quaternion handRot, tempRotation;
-    public int curIndex;
-    public bool inside, isReady;
+    [Header("Stats")]
     public SpawnMenu spawnMenu;
+    public Quaternion handRot, tempRotation;
 
+    [HideInInspector] public int curIndex;
+    [HideInInspector] public bool inside, isReady;
+
+    [Header("Audio")]
+    public AudioSource aus;
+    public AudioClip mySound;
 
     void LateUpdate()
     {
@@ -16,9 +21,13 @@ public class RotateDetection : MonoBehaviour
 
         if (inside)
         {
-            if (handRot.y < 0 && tempRotation.y >= 0) //move right
+            if (handRot.y < -0.1f && tempRotation.y >= 0) //move right
             {
-                if (!spawnMenu.moving) spawnMenu.moving = true; //rotate menu
+                if (!spawnMenu.moving)
+                {
+                    aus.PlayOneShot(mySound);
+                    spawnMenu.moving = true; //rotate menu
+                }
                 tempRotation = handRot;
             }
             if (handRot.y >= 0) tempRotation = Quaternion.Euler(this.transform.rotation.x, 0, this.transform.rotation.z);

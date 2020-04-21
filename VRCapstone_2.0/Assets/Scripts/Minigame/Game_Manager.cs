@@ -13,7 +13,6 @@ public class Game_Manager : MonoBehaviour
     [Header("Ball Stats")]
     public Transform spawnPt;
     public GameObject spawnObj, explosion;
-    public AudioSource aus;
     public AudioClip respawnBall, shotMade;
     public Material hoopColor, curMaterial;
 
@@ -25,6 +24,10 @@ public class Game_Manager : MonoBehaviour
     private float score, highScore;
     public Text curTime, scoreText, highScoreText;
 
+    [Header("Audio")]
+    public AudioSource aus;
+    public AudioSource ausAmbienceLeft, ausAmbienceRight;
+    public AudioClip timerSound, goSound, ambienceSound;
 
     [Header("Error")]
     public AudioClip errorSound;
@@ -34,14 +37,31 @@ public class Game_Manager : MonoBehaviour
     public bool hasGrabbed;
     public GameObject miniGame, alcoholMenu;
     public SpawnMenu spawnMenu;
+    public Text ouncesText, mLText;
+
+    [Header("Misc")]
+    public GameObject goAnimation;
 
     [Header("Debugger")]
     public bool isPlaying;
     public bool gameComplete, newGame;//, isPlaying;
 
+
    
     public void Update()
     {
+        //ALCOHOL TEXT
+        if (GameObject.Find("UserBottle") != null)
+        {
+             GameObject.Find("UserBottle").GetComponent<Alcohol_Stats>().ouncesText = ouncesText;
+             GameObject.Find("UserBottle").GetComponent<Alcohol_Stats>().mLText = mLText;
+        }
+        else
+        {
+            ouncesText.text = "0.0 oz";
+            mLText.text = "0.0 mL";
+        }
+
         //DEBUGGING
         /*if (gameComplete)
         {
@@ -105,6 +125,15 @@ public class Game_Manager : MonoBehaviour
 
         //START MENU
         spawnMenu.ResetMenu();
+
+        //MISC
+        aus.PlayOneShot(goSound);
+        ausAmbienceLeft.clip = timerSound;
+        ausAmbienceLeft.Play();
+        ausAmbienceRight.clip = timerSound;
+        ausAmbienceRight.Play();
+        goAnimation.SetActive(true);
+        goAnimation.GetComponent<Animator>().Play("GoStart",-1,0f);
     }  
     private void OnTriggerEnter(Collider other)
     {
@@ -170,7 +199,6 @@ public class Game_Manager : MonoBehaviour
         go.gameObject.GetComponent<TrailRenderer>().endColor = curMaterial.color;
 
     }
-
     public void GameComplete()
     {
         //CLEAR
@@ -193,6 +221,11 @@ public class Game_Manager : MonoBehaviour
         //DEBUGGING
         gameComplete = false;
 
+        //MISC
+        ausAmbienceLeft.clip = ambienceSound;
+        ausAmbienceLeft.Play();
+        ausAmbienceRight.clip = ambienceSound;
+        ausAmbienceLeft.Play();
     }
     IEnumerator ErrorWait() //wrong shot
     {

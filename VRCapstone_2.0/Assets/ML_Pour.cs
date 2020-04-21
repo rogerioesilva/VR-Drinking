@@ -5,31 +5,32 @@ using UnityEngine.UI;
 
 public class ML_Pour : MonoBehaviour
 {
-    public float curAlcohol, curAlcoholOunces;
-    public float curBottle;
-    public UnitySimpleLiquid.LiquidContainer liquidSize;
-    public GameObject parent;
+    [Header("Measurements")]
     public int counter;
+    public float curAlcohol, curAlcoholOunces, curBottle;
+
+    private UnitySimpleLiquid.LiquidContainer liquidSize;
+    private GameObject parent;
+
 
     public void Start()
     {
-        liquidSize = this.transform.parent.gameObject.GetComponent<UnitySimpleLiquid.LiquidContainer>();
+      //  liquidSize = this.transform.parent.gameObject.GetComponent<UnitySimpleLiquid.LiquidContainer>();
         parent = this.transform.parent.gameObject;
         curBottle = parent.GetComponent<Alcohol_Stats>().bottleSize;
+        liquidSize = parent.GetComponent<UnitySimpleLiquid.LiquidContainer>();
     }
-    public void Update()
+    public void Update() //create limits
     {
         if (curAlcoholOunces >= Mathf.Ceil(curBottle * 33.8140226f))
         {
-            curAlcoholOunces = Mathf.Ceil(curBottle * 33.8140226f);
-            curAlcohol = curAlcoholOunces * 29.5735296f;
+            //curAlcoholOunces = Mathf.Ceil(curBottle * 33.8140226f);
+            //curAlcohol = curAlcoholOunces * 29.5735296f;
         }
     }
-    private void OnParticleTrigger()
+    private void OnParticleTrigger() // is drinking
     {
         ParticleSystem ps = GetComponent<ParticleSystem>();
-
-        // particles
         List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
         List<ParticleSystem.Particle> exit = new List<ParticleSystem.Particle>();
 
@@ -41,36 +42,31 @@ public class ML_Pour : MonoBehaviour
         for (int i = 0; i < numEnter; i++)
         {
             ParticleSystem.Particle p = enter[i];
-             //p.startColor = new Color32(255, 0, 0, 255);
             enter[i] = p;
-           
         }
         for (int i = 0; i < numExit; i++)
         {
             ParticleSystem.Particle p = exit[i];
-          //   p.startColor = new Color32(0, 255, 0, 255);
             exit[i] = p;
-          
-
-            //  Debug.Log("Inside3");
         }
+
         // set
         ps.SetTriggerParticles(ParticleSystemTriggerEventType.Enter, enter);
         ps.SetTriggerParticles(ParticleSystemTriggerEventType.Exit, exit);
+
+        //drinking
         counter++;
         if (counter >= 130)
         {
-            curAlcoholOunces++; //((curBottle- (liquidSize.FillAmountPercent * curBottle)) * 33.8140226f);
+            curAlcoholOunces++; 
             curAlcohol = (curAlcoholOunces * 29.5735296f);
             if (curAlcoholOunces >= Mathf.Ceil(curBottle * 33.8140226f))
             {
                 curAlcoholOunces = Mathf.Ceil(curBottle * 33.8140226f);
                 curAlcohol = curAlcoholOunces * 29.5735296f;
             }
-            parent.GetComponent<Alcohol_Stats>().alcoholOunces.text = curAlcoholOunces.ToString("F2") + " oz";
-            parent.GetComponent<Alcohol_Stats>().alcoholML.text = curAlcohol.ToString("F2") + " mL";
-            Debug.Log(curAlcoholOunces);
-            Debug.Log("Inside2");
+            parent.GetComponent<Alcohol_Stats>().ouncesText.text = curAlcoholOunces.ToString("F2") + " oz";
+            parent.GetComponent<Alcohol_Stats>().mLText.text = curAlcohol.ToString("F2") + " mL";
             counter = 0;
         }
     }
